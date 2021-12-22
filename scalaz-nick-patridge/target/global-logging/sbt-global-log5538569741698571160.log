@@ -1,0 +1,8 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(import, None, None)[0m
+[0m[[0m[31merror[0m] [0m[0mNot a valid command: import (similar: export)[0m
+[0m[[0m[31merror[0m] [0m[0mNot a valid project ID: import[0m
+[0m[[0m[31merror[0m] [0m[0mExpected ':'[0m
+[0m[[0m[31merror[0m] [0m[0mNot a valid key: import (similar: ideaPort, timingFormat)[0m
+[0m[[0m[31merror[0m] [0m[0mimport[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(idea-shell, None, None)[0m
