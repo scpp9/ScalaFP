@@ -30,6 +30,34 @@ object Day5 extends App {
 
   3.some >>= { x => "!".some >>= { y => (x.show + y).some } }
 
+  def routine: Option[Pole] =
+    for {
+      start <- Monad[Option].pure(Pole(0, 0))
+      first <- start.landLeft(2)
+      second <- first.landRight(2)
+//      third <- second.landLeft(1)
+    } yield second
+
+  print(routine)
+
+// So in this monadic view, a List context represents a mathematical value that could have multiple solutions
+// Other than that manipulating Lists using for notation is just like plain Scala:
+  // FunctorFilter
+  // Scala's for comprehension allows filtering:
+
+val english = Map(1 -> "one", 3 -> "three", 10 -> "ten")
+
+(1 to 50).toList mapFilter(english.get(_))
+
+def collectEnglish[F[_]: FunctorFilter](f: F[Int]): F[String] =
+  f collect {
+    case 1 => "one"
+    case 2 => "two"
+    case 3 => "three"
+  }
+
+  collectEnglish((1 to 50).toList)
+
 }
 
 
