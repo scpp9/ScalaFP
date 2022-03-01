@@ -17,17 +17,7 @@ class ReaderMonad {
     }
   }
 
-  object UserInfo extends Users {
-    def userInfo(name: String): UserRepo => Map[String, String] =
-      for {
-            user <- findUser(name)
-            boss <- getUser(user.parentId)
-      } yield Map(
-        "name" -> s"${user.name}",
-        "email" -> s"${user.email}",
-        "boss_name" -> s"${boss.name}"
-      )
-}
+
 
 }
 
