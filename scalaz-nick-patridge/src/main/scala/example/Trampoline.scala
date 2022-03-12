@@ -11,7 +11,7 @@ object Trampoline extends App {
       case FlatMap(a, f) => a match {
         case Done(v)=> f(v).resume
         case More(k) => Left(() => FlatMap(k(), f))
-        case FlatMap(b, g) => FlatMap(b, ((x:Any)=> FlatMap(g(x), f): Trampoline[A]).resume)
+        case FlatMap(b, g) => FlatMap(b, ((x:Any)=> FlatMap(g(x), f): Trampoline[A])).resume
       }
     }
 
@@ -55,13 +55,12 @@ object Trampoline extends App {
   type BinTree[+A] = Free[Pair, A]
 
  type Tree[+A] = Free[List, A]
- type FreeMonoid[A] = Free[({type LMDA[ALPHA] = (ALPHA, A)})#LMDA, Unit]
+// type FreeMonoid[A] = Free[({type LMDA[ALPHA] = (ALPHA, A)})#LMDA, Unit]
 
  //Let's try defining "List" using Free
- type FreeMonoid[A] = Free[(A, +*), Unit]
+ type FreeMonoid[A] = Free[(A, *), Unit]
 
   def cons[A](a: A): FreeMonoid[A] = Free.liftF((a,()))
 
   val x = cons(1)
-
 }
