@@ -37,4 +37,6 @@ object Trampoline extends App {
     def flatMap[B](f: A=> State[S, B]) = State[S, B](s => More(() => runS(s) flatMap {case (a, s1) => More(() => f(a) runS s1)}))
   }
 
+
+
 }
