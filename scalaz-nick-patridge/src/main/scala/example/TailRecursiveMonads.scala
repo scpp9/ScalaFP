@@ -27,6 +27,8 @@ object TailRecursiveMonads extends App {
      }
 
 
+   // https://medium.com/@alexander.zaidel/stack-safe-monads-33e803065a9d
+
 
 
 

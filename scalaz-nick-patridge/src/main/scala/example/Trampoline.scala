@@ -51,10 +51,7 @@ object Trampoline extends App {
 
   }
 
- type Pair[A] = (A, A)
-  type BinTree[+A] = Free[Pair, A]
 
- type Tree[+A] = Free[List, A]
 // type FreeMonoid[A] = Free[({type LMDA[ALPHA] = (ALPHA, A)})#LMDA, Unit]
 
  //Let's try defining "List" using Free
@@ -63,4 +60,13 @@ object Trampoline extends App {
   def cons[A](a: A): FreeMonoid[A] = Free.liftF((a,()))
 
   val x = cons(1)
+
+  val xs = cons(1) flatMap(_ => (cons(2) flatMap(_ => cons(3))))
+
+  def toList[A](list: FreeMonoid[A]): List[A] =
+    list.fold(
+      { _ => Nil },
+      { case (x: A @unchecked, xs: FreeMonoid[A]) => x :: toList(xs) })
+
+  print(toList(xs))
 }
